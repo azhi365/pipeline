@@ -2,7 +2,7 @@ node {
     scm         = env.scm
     target_host = env.target_host
     target_dir  = env.target_dir
-    target_port = env.target_port
+    target_port = env.ssh_port
     app_name = ""
     stage('Clone') {
         echo '1.clone code'
@@ -22,6 +22,6 @@ node {
 
     stage('Deploy') {
         echo '4.deploy project'
-        sh "scp -P ${target_port} -r dist/* root@${target_host}:${target_dir}"
+        sh "scp -P ${ssh_port} -r dist/* root@${target_host}:${target_dir}"
     }
 }
